@@ -1,4 +1,4 @@
 module.exports = {
-    basePath: '',
-    assetPrefix: '/landing-nextjs/'
+    basePath: '/',
+    assetPrefix: '/'
 }
