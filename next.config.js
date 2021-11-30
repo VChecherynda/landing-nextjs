@@ -1,3 +1,3 @@
 module.exports = {
-    basePath: '/landing-nextjs',
-  }
+    basePath: process.env.PRODUCTION === 'true' ? '/landing-nextjs' : '',
+}
