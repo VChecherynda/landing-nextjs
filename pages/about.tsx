@@ -4,8 +4,8 @@ import Link from 'next/link'
 function About() {
     return (
         <Layout>
-            <div>This page is now blank. I will fill it in future</div>
-            <Link href="/">Main page</Link>
+            <div>About</div>
+            <Link href="/">Home</Link>
         </Layout>
     );
 }
