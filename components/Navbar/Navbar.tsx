@@ -1,21 +1,20 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Link from 'next/link';
+import AlignVerticalCenterIcon from '@mui/icons-material/AlignVerticalCenter';
 import styles from './Navbar.module.scss'
 
 function Navbar() {
     return (
-        <nav className={styles.navbar}>
-            <Box
-                sx={{
-                    p: 1,
-                    display: 'grid',
-                    bgcolor: 'primary.main',
-                    color: 'white',
-                }}
-            >
-                {"Header"}
-            </Box>
-        </nav>
+        <header className={styles.header}>
+            <AlignVerticalCenterIcon />
+
+            <nav className={styles.navbar}>
+                <Link href="/"><span className={styles.link} >Home</span></Link>
+                <Link href="/about"><span className={styles.link} >About</span></Link>
+                <Link href="/features"><span className={styles.link} >Features</span></Link>
+                <Link href="/faq"><span className={styles.link} >FAQ</span></Link>
+            </nav>
+        </header>
     );
 }
 

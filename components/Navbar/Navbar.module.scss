@@ -1,3 +1,16 @@
-.navbar {
-    width: 100%;
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.link {
+    padding: 0 10px;
+    text-decoration: none;
+    font-weight: 700;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.5;
+    }
 }
