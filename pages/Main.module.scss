@@ -40,3 +40,13 @@
     border: 1px solid rgba(0, 0, 255, .2);
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 }
+
+.weatherCard {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 255, .2);
+}

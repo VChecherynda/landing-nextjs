@@ -1,32 +1,45 @@
 import Layout from "../components/Layout/Layout";
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import AlbumIcon from '@mui/icons-material/Album';
 import AppleIcon from '@mui/icons-material/Apple';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import Link from 'next/link'
-import styles from './Main.module.scss'
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './Main.module.scss';
 
-function App() {
+export async function getStaticProps(cntext) {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=${process.env.WEATHER_API_KEY}&units=metric`);
+
+    const data = await response.json();
+     
+    return {
+      props: data
+    }
+}
+
+function App({ dt, name, weather }) {
     return (
         <Layout>
             <section>
-                <Box className={styles.halfPageBlock}>
-                    <Stack>
+                <Stack direction="row" justifyContent="center" >
+                    <Stack className={styles.halfPageBlock}>
                         <Stack  className={styles.textBlock}>
-                            <h1 className={styles.title}>A Lot of What</h1> 
+                            <h1 className={styles.title}>T-Rex</h1> 
                             <p className={styles.text}>
-                                Jailbreaks and riots in support of alleged pirates 
-                                were common throughout the British Empire during 
-                                the late seventeenth century. Local political 
-                                leaders openly protected men who committed acts of 
-                                piracy against powers that were nominally allied or 
-                                at peace with England. In large part, these leaders 
-                                were protecting their own hides: Colonists wanted to prevent 
-                                depositions proving that they had harbored pirates or 
-                                purchased their goods. Some of the instigators were 
-                                fathers-in-law of pirates.
+                                Like other tyrannosaurids, Tyrannosaurus was a bipedal carnivore 
+                                with a massive skull balanced by a long, heavy tail. Relative 
+                                to its large and powerful hind limbs, the forelimbs of Tyrannosaurus 
+                                were short but unusually powerful for their size, and they 
+                                had two clawed digits. The most complete specimen measures 
+                                up to 12.3 meters (40 feet) in length, though T. rex could grow 
+                                to lengths of over 12.3 m (40 ft), up to 3.96 m (13 ft) tall 
+                                at the hips, and according to most modern estimates 
+                                6 metric tons (6.6 short tons) to 8 metric tons (8.8 short tons) in weight.
+                                Although other theropods rivaled or exceeded Tyrannosaurus rex in size, 
+                                it is still among the largest known land predators and is estimated to 
+                                have exerted the strongest bite force among all terrestrial animals. 
+                                By far the largest carnivore in its environment.
                             </p>
                         </Stack>
                         <Stack direction="row" className={styles.buttonBlock}>
@@ -37,7 +50,10 @@ function App() {
                             </Link>
                         </Stack>
                     </Stack>
-                </Box>
+                    <Stack className={styles.halfPageBlock}>
+                        <Image src="/t-rex.png" width="400" height="400" alt="main picture" />
+                    </Stack>
+                </Stack>
             </section>
 
             <section>
@@ -58,6 +74,27 @@ function App() {
                         <p>Some random text.You should not read it. But I leave as it is.</p>
                     </Stack>
                 </Stack>
+            </section>
+
+            <section>
+                <Stack justifyContent="center" alignItems="center">
+                    {weather.map(day => {
+                        const parsedDate = new Date(1638490501 * 1000);
+                        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                        const fullYear = parsedDate.getFullYear();
+                        const month = months[parsedDate.getMonth()];
+                        const date = parsedDate.getDate();
+
+                        return (
+                            <Stack direction="column" alignItems="center" className={styles.weatherCard}>
+                                <span>{name}</span>
+                                <span>{`${date}-${month}-${fullYear}`}</span>
+                                <img width={20} height={20} src={`http://openweathermap.org/img/wn/${day.icon}.png`}/>
+                                <span>{day.description}</span>
+                            </Stack> 
+                        )
+                    })}
+                </Stack> 
             </section>
         </Layout>
     );
