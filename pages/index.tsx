@@ -70,7 +70,7 @@ function App({ dt, name, main, weather }) {
                         </Stack>
                     </Stack>
                     <Stack className={styles.halfPageBlock}>
-                        <Image src="/t-rex.png" width="400" height="400" alt="main picture" />
+                        <img src="/t-rex.png" width="400" height="400" alt="main picture" />
                     </Stack>
                 </Stack>
             </section>
@@ -107,14 +107,13 @@ function App({ dt, name, main, weather }) {
                         console.log('[day]', day)
 
                         return (
-                            <Stack direction="column" alignItems="center" className={styles.weatherCard}>
+                            <Stack key={day.id} direction="column" alignItems="center" className={styles.weatherCard}>
                                 <span>{`city: ${name}`}</span>
                                 <span>{`day: ${date}-${month}-${fullYear}`}</span>
                                 <span>{`temperature: ${Math.round(main.temp)}°C`}</span> 
 
-                                <Image
-                                    loader={({ src }) => `http://openweathermap.org/img/wn/${src}.png`}
-                                    src={day.icon} 
+                                <img
+                                    src={`http://openweathermap.org/img/wn/${day.icon}.png`} 
                                     width={20} 
                                     height={20}
                                 />
