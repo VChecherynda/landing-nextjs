@@ -112,8 +112,9 @@ function App({ dt, name, main, weather }) {
                                 <span>{`day: ${date}-${month}-${fullYear}`}</span>
                                 <span>{`temperature: ${Math.round(main.temp)}°C`}</span> 
 
-                                <img
-                                    src={`http://openweathermap.org/img/wn/${day.icon}.png`}
+                                <Image
+                                    loader={({ src }) => `http://openweathermap.org/img/wn/${src}.png`}
+                                    src={day.icon} 
                                     width={20} 
                                     height={20}
                                 />
