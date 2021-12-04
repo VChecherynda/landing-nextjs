@@ -8,6 +8,25 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Main.module.scss';
 
+
+function getCooridinates() {
+    let options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    }
+
+    function success(pos) {
+        let crd = pos.coords;
+    }
+
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options)
+}
+
 export async function getStaticProps(cntext) {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=${process.env.WEATHER_API_KEY}&units=metric`);
 
@@ -18,7 +37,7 @@ export async function getStaticProps(cntext) {
     }
 }
 
-function App({ dt, name, weather }) {
+function App({ dt, name, main, weather }) {
     return (
         <Layout>
             <section>
@@ -79,20 +98,22 @@ function App({ dt, name, weather }) {
             <section>
                 <Stack justifyContent="center" alignItems="center">
                     {weather.map(day => {
-                        const parsedDate = new Date(1638490501 * 1000);
+                        const parsedDate = new Date(dt * 1000);
                         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
                         const fullYear = parsedDate.getFullYear();
                         const month = months[parsedDate.getMonth()];
                         const date = parsedDate.getDate();
 
+                        console.log('[day]', day)
+
                         return (
                             <Stack direction="column" alignItems="center" className={styles.weatherCard}>
-                                <span>{name}</span>
-                                <span>{`${date}-${month}-${fullYear}`}</span>
+                                <span>{`city: ${name}`}</span>
+                                <span>{`day: ${date}-${month}-${fullYear}`}</span>
+                                <span>{`temperature: ${Math.round(main.temp)}°C`}</span> 
 
-                                <Image
-                                    loader={({ src }) => `http://openweathermap.org/img/wn/${src}.png`}
-                                    src={day.icon} 
+                                <img
+                                    src={`http://openweathermap.org/img/wn/${day.icon}.png`}
                                     width={20} 
                                     height={20}
                                 />
