@@ -1,5 +1,5 @@
 const isProd = process.env.PRODUCTION === 'true';
 
-const prefix = isProd ? process.env.PRODUCTION_NEXT_JS_PATH : '';
+const prefix = isProd ? process.env.NEXT_PUBLIC_BASE_PATH : '';
 
 export { prefix };
