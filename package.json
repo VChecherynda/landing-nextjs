@@ -7,8 +7,6 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "build:production": "NODE_ENV=production env-cmd -f .env.production next build",
-    "export:production": "NODE_ENV=production env-cmd -f .env.production next export",
     "start": "next start",
     "lint": "next lint"
   },
