@@ -1,4 +1,6 @@
+const isProd = process.env.PRODUCTION === 'true';
+
 module.exports = {
-    basePath: process.env.PRODUCTION === 'true' ? '/landing-nextjs' : '',
-    assetPrefix: process.env.PRODUCTION === 'true' ? '/landing-nextjs/' : '',
+    basePath: isProd ? process.env.PRODUCTION_NEXT_JS_PATH : '',
+    assetPrefix: isProd ? process.env.PRODUCTION_NEXT_JS_PATH : '',
 }

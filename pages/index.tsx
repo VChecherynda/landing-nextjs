@@ -5,9 +5,9 @@ import AlbumIcon from '@mui/icons-material/Album';
 import AppleIcon from '@mui/icons-material/Apple';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './Main.module.scss';
 
+import { prefix } from '../utils';
 
 function getCooridinates() {
     let options = {
@@ -70,7 +70,7 @@ function App({ dt, name, main, weather }) {
                         </Stack>
                     </Stack>
                     <Stack className={styles.halfPageBlock}>
-                        <img src="/t-rex.png" width="400" height="400" alt="main picture" />
+                        <img src={`${prefix}/t-rex.png`} width="400" height="400" alt="main picture" />
                     </Stack>
                 </Stack>
             </section>
