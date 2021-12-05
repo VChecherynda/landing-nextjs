@@ -104,8 +104,6 @@ function App({ dt, name, main, weather }) {
                         const month = months[parsedDate.getMonth()];
                         const date = parsedDate.getDate();
 
-                        console.log('[day]', day)
-
                         return (
                             <Stack key={day.id} direction="column" alignItems="center" className={styles.weatherCard}>
                                 <span>{`city: ${name}`}</span>
