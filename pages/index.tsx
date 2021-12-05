@@ -5,27 +5,9 @@ import AlbumIcon from '@mui/icons-material/Album';
 import AppleIcon from '@mui/icons-material/Apple';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Link from 'next/link';
+
 import styles from './Main.module.scss';
-
 import { prefix } from '../utils';
-
-function getCooridinates() {
-    let options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    }
-
-    function success(pos) {
-        let crd = pos.coords;
-    }
-
-    function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error, options)
-}
 
 export async function getStaticProps(cntext) {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=${process.env.WEATHER_API_KEY}&units=metric`);
