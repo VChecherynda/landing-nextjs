@@ -12,6 +12,7 @@ jobs:
     env:
       PRODUCTION: ${{ secrets.PRODUCTION }}
       NEXT_PUBLIC_BASE_PATH: /${{ secrets.NEXT_PUBLIC_BASE_PATH }}
+      WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
     strategy:
       matrix:
