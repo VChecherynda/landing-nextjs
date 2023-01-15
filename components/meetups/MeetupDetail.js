@@ -1,5 +1,5 @@
 import React from 'react';
-import classes  from "./MeetupDetails.module.scss"
+import classes  from "./MeetupDetails.module.css"
 
 function MeetupDetails(props) {
     return (
